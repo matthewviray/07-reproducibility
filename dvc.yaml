@@ -1,0 +1,22 @@
+stages:
+  clean:
+    cmd: python src/clean.py
+    deps:
+    - data/raw/events.csv
+    - src/clean.py
+    outs:
+    - data/clean/events.csv
+  transform:
+    cmd: python src/transform.py
+    deps:
+    - data/clean/events.csv
+    - src/transform.py
+    outs:
+    - data/transformed/events.csv
+  features:
+    cmd: python src/features.py
+    deps:
+    - data/transformed/events.csv
+    - src/features.py
+    outs:
+    - data/features/events.csv
